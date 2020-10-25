@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PaginatorAsync.Common;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,7 +7,6 @@ namespace PaginatorAsync.Helpers
 {
     public static class PageGroupHelper
     {
-        private const int TotalPageDefault = 1;
         public static Dictionary<int, List<int>> GetGroupPages(int total, int quantityItemsInPage, int totalGroupPages)
         {
             var pageGroup = new Dictionary<int, List<int>>();
@@ -14,17 +14,17 @@ namespace PaginatorAsync.Helpers
             if (total == 0)
                 return pageGroup;
 
-            double pages = TotalPageDefault;
+            double pages = PageConst.PageDefault;
             if (total >= quantityItemsInPage)
                 pages = (total / quantityItemsInPage);
             else
-                totalGroupPages = TotalPageDefault;
+                totalGroupPages = PageConst.PageDefault;
 
             var totalPages = Math.Round(pages);
 
             var pageList = new List<int>();
-            int pageCount = 1;
-            int pageGroupCount = 1;
+            int pageCount = PageConst.PageDefault;
+            int pageGroupCount = PageConst.PageDefault;
 
             for (var i = 1; i <= totalPages; i++)
             {

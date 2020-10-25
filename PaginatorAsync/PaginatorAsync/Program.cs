@@ -1,4 +1,5 @@
-﻿using PaginatorAsync.Helpers;
+﻿using PaginatorAsync.Extensions;
+using PaginatorAsync.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -14,17 +15,17 @@ namespace PaginatorAsync
             var items = GetGenerateItems(6000);
 
             // Items per page
-            const int quantityItemsPerPage = 100;
+            int? quantityItemsPerPage = 100;
 
             // Total of pages for wait to finish and start nexts pages
-            const int totalPageGroups = 5;
+            int totalPageGroups = 5;
 
             Console.WriteLine("start print.");
 
             // execute task for page groups
-            await TaskHelper.ExecutePages(
+            await TaskPageHelper.ExecutePages(
                 items,
-                quantityItemsPerPage,
+                quantityItemsPerPage.GetPageSizeDefault(),
                 totalPageGroups,
                 async (int currentPage, IEnumerable<int> itemsPage) =>
                 {

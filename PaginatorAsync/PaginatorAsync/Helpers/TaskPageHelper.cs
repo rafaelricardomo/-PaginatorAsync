@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PaginatorAsync.Helpers
 {
-    public static class TaskHelper
+    public static class TaskPageHelper
     {
         public static async Task ExecutePages(IEnumerable<int> listForPaging, int quantityItemsPerPage, int totalPageGroups, Func<int,IEnumerable<int>, Task> func)
         {
